@@ -7,147 +7,145 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #00aaff;
-            --dark: #0f0f1a;
-            --shadow: 0 8px 25px rgba(0,170,255,0.2);
+            --primary: #00ccff;
+            --primary-dark: #0099cc;
+            --glow: 0 0 25px #00ccff;
+            --shadow: 0 12px 35px rgba(0,204,255,0.25);
         }
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0a0e17, #12182b);
-            color: white;
+            background: linear-gradient(135deg, #0a0e1f, #0f1a35);
+            color: #e0f7ff;
             min-height: 100vh;
-            overflow-x: hidden;
         }
         header {
-            background: rgba(15,15,26,0.85);
-            backdrop-filter: blur(10px);
-            padding: 1rem 5%;
+            background: rgba(15,20,35,0.9);
+            backdrop-filter: blur(12px);
+            padding: 1.2rem 5%;
             position: sticky;
             top: 0;
             z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(0,170,255,0.1);
+            border-bottom: 1px solid rgba(0,204,255,0.15);
         }
         .logo {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--primary);
+            text-shadow: var(--glow);
         }
         .hamburger {
-            display: none;
+            display: flex;
             flex-direction: column;
             justify-content: space-between;
-            width: 30px;
-            height: 22px;
+            width: 35px;
+            height: 26px;
             cursor: pointer;
             z-index: 1100;
         }
         .hamburger span {
             width: 100%;
-            height: 3px;
+            height: 4px;
             background: var(--primary);
-            border-radius: 3px;
+            border-radius: 4px;
             transition: all 0.4s ease;
-            box-shadow: 0 0 8px var(--primary);
+            box-shadow: var(--glow);
         }
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(7px, 7px);
-        }
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
         .sidebar {
             position: fixed;
-            top: 0;
-            right: -300px;
-            width: 300px;
-            height: 100%;
-            background: rgba(15,15,26,0.95);
-            backdrop-filter: blur(10px);
-            padding: 5rem 2rem 2rem;
-            transition: right 0.5s ease;
+            top: 0; right: -320px;
+            width: 320px; height: 100%;
+            background: rgba(15,20,35,0.98);
+            backdrop-filter: blur(15px);
+            padding: 6rem 2rem 2rem;
+            transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             z-index: 999;
             text-align: center;
         }
-        .sidebar.active {
-            right: 0;
-        }
+        .sidebar.active { right: 0; }
         .sidebar h2 {
             color: var(--primary);
-            margin-bottom: 2rem;
-            font-size: 1.8rem;
-            text-shadow: 0 0 15px var(--primary);
+            margin-bottom: 2.5rem;
+            font-size: 2rem;
+            text-shadow: var(--glow);
         }
         .sidebar-btn {
             display: block;
             width: 100%;
-            padding: 1rem;
-            margin: 1rem 0;
-            background: linear-gradient(45deg, #00aaff, #0077cc);
+            padding: 1.1rem;
+            margin: 1.2rem 0;
+            background: linear-gradient(135deg, #00ccff, #0099cc);
             color: white;
             border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
+            border-radius: 60px;
+            font-size: 1.15rem;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,170,255,0.4);
+            box-shadow: var(--shadow);
             transition: all 0.4s;
+            animation: pulseBtn 3s infinite;
         }
         .sidebar-btn:hover {
-            transform: scale(1.08) translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,170,255,0.7);
+            transform: scale(1.1);
+            box-shadow: 0 0 40px #00ccff;
+            animation: none;
+        }
+        @keyframes pulseBtn {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
         }
         .search-bar {
             width: 50%;
-            max-width: 400px;
-            padding: 0.7rem 1.2rem;
-            border: 2px solid rgba(0,170,255,0.3);
+            max-width: 450px;
+            padding: 0.8rem 1.4rem;
+            border: 2px solid rgba(0,204,255,0.3);
             border-radius: 50px;
             background: rgba(255,255,255,0.05);
             color: white;
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
         .main-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin: 3rem 0 1rem;
-            background: linear-gradient(90deg, #00aaff, #64c8ff);
+            font-size: 2.8rem;
+            margin: 3.5rem 0 1.5rem;
+            background: linear-gradient(90deg, #00ccff, #80e0ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .template-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            padding: 0 5% 4rem;
-            max-width: 1400px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+            padding: 0 5% 5rem;
+            max-width: 1500px;
             margin: 0 auto;
         }
         .template-card {
-            background: rgba(20,25,40,0.6);
-            border-radius: 18px;
+            background: rgba(20,30,50,0.6);
+            border-radius: 20px;
             overflow: hidden;
-            border: 1px solid rgba(0,170,255,0.15);
+            border: 1px solid rgba(0,204,255,0.2);
             box-shadow: var(--shadow);
-            transition: all 0.4s ease;
+            transition: all 0.5s ease;
             display: flex;
             flex-direction: column;
-            height: 420px; /* Fijo para uniformidad */
         }
         .template-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 50px rgba(0,170,255,0.3);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(0,204,255,0.4);
+            border-color: var(--primary);
         }
         .image-container {
-            flex: 1;
             width: 100%;
-            background: #0a0e17;
+            min-height: 350px;
+            max-height: 550px;
+            background: #0a0e1f;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -156,104 +154,123 @@
         .image-container img {
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain; /* Muestra la imagen completa */
-            transition: transform 0.6s ease;
+            object-fit: contain; /* Imagen completa, sin corte */
+            transition: transform 0.7s ease;
         }
         .template-card:hover .image-container img {
-            transform: scale(1.08);
+            transform: scale(1.1);
         }
         .info {
-            padding: 1rem;
+            padding: 1.2rem;
             text-align: center;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.35);
         }
         .template-name {
-            font-size: 1.1rem;
+            font-size: 1.25rem;
             font-weight: 600;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.8rem;
             color: #e0f7ff;
         }
         .download-btn {
-            background: linear-gradient(45deg, #00aaff, #0077cc);
+            background: linear-gradient(45deg, #00ccff, #0099cc);
             color: white;
             border: none;
-            padding: 0.8rem 1.8rem;
+            padding: 0.9rem 2rem;
             border-radius: 50px;
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,170,255,0.4);
-            animation: pulse 2s infinite;
+            box-shadow: var(--shadow);
+            animation: pulse 2.5s infinite;
         }
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.04); }
+            50% { transform: scale(1.05); }
         }
-        .download-btn:hover {
-            animation: none;
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(0,170,255,0.7);
-        }
-        /* Loader descarga (cubo original) */
+        .download-btn:hover { animation: none; transform: scale(1.1); box-shadow: 0 0 40px #00ccff; }
+
+        /* Loader descarga: cubo 3D original */
         #loader-download {
             position: fixed; inset: 0; background: rgba(10,14,23,0.98);
             display: none; align-items:center; justify-content:center; z-index:9999;
             backdrop-filter: blur(12px);
         }
-        /* Loader menú (rayo azul) */
+        .loader-container { display: flex; flex-direction: column; align-items: center; gap: 2.5rem; }
+        .loader-text {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 2.2rem;
+            letter-spacing: 4px;
+            text-shadow: var(--glow);
+            animation: textGlow 2s infinite alternate;
+        }
+        @keyframes textGlow { 0% { text-shadow: 0 0 15px var(--primary); } 100% { text-shadow: 0 0 40px var(--primary); } }
+        .spinner {
+            width: 120px; height: 120px;
+            position: relative; transform-style: preserve-3d; perspective: 800px;
+            animation: spin-smooth 6s infinite linear;
+        }
+        .spinner > div {
+            position: absolute; inset: 0;
+            background: linear-gradient(45deg, rgba(0,204,255,0.85), rgba(128,224,255,0.85));
+            border: 4px solid var(--primary);
+            box-shadow: var(--glow), inset 0 0 20px var(--primary);
+            backface-visibility: hidden;
+        }
+        .spinner > div:nth-child(1) { transform: rotateY(0deg) translateZ(60px); }
+        .spinner > div:nth-child(2) { transform: rotateY(90deg) translateZ(60px); }
+        .spinner > div:nth-child(3) { transform: rotateY(180deg) translateZ(60px); }
+        .spinner > div:nth-child(4) { transform: rotateY(-90deg) translateZ(60px); }
+        .spinner > div:nth-child(5) { transform: rotateX(90deg) translateZ(60px); }
+        .spinner > div:nth-child(6) { transform: rotateX(-90deg) translateZ(60px); }
+        @keyframes spin-smooth { from { transform: rotateX(0) rotateY(0); } to { transform: rotateX(360deg) rotateY(360deg); } }
+
+        /* Loader menú: rayo azul */
         #loader-menu {
             position: fixed; inset: 0; background: rgba(10,14,23,0.98);
             display: none; align-items:center; justify-content:center; z-index:9999;
             backdrop-filter: blur(12px);
             flex-direction: column;
-            gap: 2rem;
+            gap: 2.5rem;
         }
         .bolt {
             width: 0; height: 0;
-            border-left: 30px solid transparent;
-            border-right: 30px solid transparent;
-            border-bottom: 80px solid #00aaff;
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 90px solid #00ccff;
             position: relative;
-            animation: glowBolt 1.5s infinite alternate;
-            filter: drop-shadow(0 0 30px #00aaff);
+            filter: drop-shadow(0 0 40px #00ccff);
+            animation: glowBolt 1.8s infinite alternate;
         }
         .bolt::after {
             content: '';
             position: absolute;
-            top: 70px; left: -20px;
+            top: 78px; left: -25px;
             width: 0; height: 0;
-            border-left: 20px solid transparent;
-            border-right: 20px solid transparent;
-            border-top: 50px solid #00aaff;
-            animation: glowBolt 1.5s infinite alternate;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-top: 60px solid #00ccff;
+            filter: drop-shadow(0 0 40px #00ccff);
         }
         @keyframes glowBolt {
-            0% { filter: drop-shadow(0 0 20px #00aaff); opacity: 0.8; }
-            100% { filter: drop-shadow(0 0 50px #00aaff); opacity: 1; }
+            0% { filter: drop-shadow(0 0 20px #00ccff); transform: scale(1); }
+            100% { filter: drop-shadow(0 0 60px #00ccff); transform: scale(1.08); }
         }
         .loader-text-menu {
-            color: #00aaff;
-            font-size: 2rem;
+            color: #00ccff;
+            font-size: 2.3rem;
             font-weight: 700;
-            letter-spacing: 3px;
-            text-shadow: 0 0 20px #00aaff;
-            animation: textChange 6s infinite;
-        }
-        @keyframes textChange {
-            0%, 33% { content: "Cargando..."; }
-            33%, 66% { content: "Espera un momento..."; }
-            66%, 100% { content: "Ya casi..."; }
+            letter-spacing: 4px;
+            text-shadow: var(--glow);
         }
     </style>
 </head>
 <body>
 
-    <!-- Loader para descargas (cubo) -->
+    <!-- Loader para descargas (cubo 3D) -->
     <div id="loader-download">
         <div class="loader-container">
-            <div class="spinner">
-                <div></div><div></div><div></div><div></div><div></div><div></div>
-            </div>
+            <div class="spinner"><div></div><div></div><div></div><div></div><div></div><div></div></div>
             <div class="loader-text">CARGANDO PLANTILLA...</div>
         </div>
     </div>
@@ -266,30 +283,27 @@
 
     <header>
         <div class="logo">Plantillas HTML Gratis</div>
-        <input type="text" class="search-bar" placeholder="Buscar...">
+        <input type="text" class="search-bar" placeholder="Buscar plantillas...">
         <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
         </div>
     </header>
 
     <div class="sidebar" id="sidebar">
         <h2>Creado por Brusmods</h2>
-        <!-- Botón de ejemplo -->
         <button class="sidebar-btn" data-link="https://tudominio.com/contacto">Contacto / Soporte</button>
-        <!-- Para agregar más botones: copia la línea de arriba y cambia nombre y data-link -->
-        <!-- <button class="sidebar-btn" data-link="TU_LINK">Otro Botón Chido</button> -->
+        <!-- Agrega más así: -->
+        <!-- <button class="sidebar-btn" data-link="TU_LINK">Otro Botón</button> -->
     </div>
 
     <h1 class="main-title">Plantillas Web Increíbles</h1>
     <div class="explore">Explorar categorías ></div>
 
     <div class="template-grid">
-        <!-- Tus tarjetas aquí (igual que antes, pero más pequeñas y con contain) -->
+        <!-- Ejemplo -->
         <div class="template-card">
             <div class="image-container">
-                <img src="1.png" alt="Vista previa logo-pro">
+                <img src="https://i.ibb.co/TU-LINK-AQUI/logo-pro.png" alt="Vista previa">
             </div>
             <div class="info">
                 <div class="template-name">logo-pro.png</div>
@@ -297,50 +311,40 @@
             </div>
         </div>
 
-        <div class="template-card">
-            <div class="image-container">
-                <img src="xddd" alt="Vista previa logo-pro">
-            </div>
-            <div class="info">
-                <div class="template-name">logo-pro.png</div>
-                <button class="download-btn" data-link="https://tudominio.com/descargas/logo-pro.zip">Probar y Descargar</button>
-            </div>
-        </div>
-        
-
-        <!-- Agrega más tarjetas copiando el bloque -->
+        <!-- Copia para más tarjetas -->
     </div>
 
     <script>
         // Menú hamburguesa
-        const hamburger = document.getElementById('hamburger');
-        const sidebar = document.getElementById('sidebar');
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            sidebar.classList.toggle('active');
+        const ham = document.getElementById('hamburger');
+        const side = document.getElementById('sidebar');
+        ham.addEventListener('click', () => {
+            ham.classList.toggle('active');
+            side.classList.toggle('active');
         });
 
-        // Loader para botones de descarga (cubo)
+        // Loader descargas (cubo)
         document.querySelectorAll('.download-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
+            btn.addEventListener('click', e => {
                 e.preventDefault();
-                const link = this.getAttribute('data-link');
+                const link = btn.getAttribute('data-link');
                 document.getElementById('loader-download').style.display = 'flex';
-                setTimeout(() => {
-                    window.location.href = link;
-                }, 2500);
+                setTimeout(() => window.location.href = link, 2500);
             });
         });
 
-        // Loader para botones del menú (rayo)
+        // Loader menú (rayo)
         document.querySelectorAll('.sidebar-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
+            btn.addEventListener('click', e => {
                 e.preventDefault();
-                const link = this.getAttribute('data-link');
+                const link = btn.getAttribute('data-link');
                 document.getElementById('loader-menu').style.display = 'flex';
-                setTimeout(() => {
-                    window.location.href = link;
-                }, 4500); // Más tiempo para ver la animación del texto
+                // Cambiar texto dinámicamente
+                const textEl = document.querySelector('.loader-text-menu');
+                textEl.textContent = 'Cargando...';
+                setTimeout(() => textEl.textContent = 'Espera un momento...', 1500);
+                setTimeout(() => textEl.textContent = 'Ya casi...', 3000);
+                setTimeout(() => window.location.href = link, 4500);
             });
         });
     </script>
