@@ -117,9 +117,7 @@ header{
   text-align:center;
 }
 
-.sidebar.active{
-  right:0;
-}
+.sidebar.active{ right:0; }
 
 .sidebar h2{
   color:var(--primary);
@@ -141,7 +139,6 @@ header{
   box-shadow:var(--shadow);
   transition:.3s;
 }
-
 .sidebar-btn:hover{
   transform:scale(1.08);
   box-shadow:0 0 40px #00ccff;
@@ -174,7 +171,6 @@ header{
   overflow:hidden;
   transition:.4s;
 }
-
 .template-card:hover{
   transform:translateY(-12px);
   box-shadow:0 25px 60px rgba(0,204,255,.45);
@@ -187,7 +183,6 @@ header{
   justify-content:center;
   background:#0a0e1f;
 }
-
 .image-container img{
   max-width:100%;
   max-height:100%;
@@ -210,6 +205,84 @@ header{
   cursor:pointer;
   box-shadow:var(--shadow);
 }
+
+/* ================= LOADER DESCARGA (CUBO) ================= */
+#loader-download{
+  position:fixed;
+  inset:0;
+  background:rgba(10,14,23,.98);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  backdrop-filter:blur(12px);
+}
+
+.loader-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:2.5rem;
+}
+
+.loader-text{
+  color:var(--primary);
+  font-weight:700;
+  font-size:2rem;
+  text-shadow:var(--glow);
+}
+
+.spinner{
+  width:120px;
+  height:120px;
+  position:relative;
+  transform-style:preserve-3d;
+  animation:spin 6s linear infinite;
+}
+.spinner div{
+  position:absolute;
+  inset:0;
+  background:rgba(0,204,255,.8);
+  border:4px solid var(--primary);
+  box-shadow:var(--glow);
+}
+.spinner div:nth-child(1){transform:rotateY(0deg) translateZ(60px)}
+.spinner div:nth-child(2){transform:rotateY(90deg) translateZ(60px)}
+.spinner div:nth-child(3){transform:rotateY(180deg) translateZ(60px)}
+.spinner div:nth-child(4){transform:rotateY(-90deg) translateZ(60px)}
+.spinner div:nth-child(5){transform:rotateX(90deg) translateZ(60px)}
+.spinner div:nth-child(6){transform:rotateX(-90deg) translateZ(60px)}
+
+@keyframes spin{
+  from{transform:rotateX(0) rotateY(0)}
+  to{transform:rotateX(360deg) rotateY(360deg)}
+}
+
+/* ================= LOADER MENÚ (CÍRCULO 4D) ================= */
+#loader-menu{
+  position:fixed;
+  inset:0;
+  background:rgba(10,14,23,.98);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:2rem;
+  z-index:9999;
+}
+
+.circle-4d{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  border:6px solid var(--primary);
+  box-shadow:0 0 50px var(--primary);
+  animation:rotate4d 3s linear infinite;
+}
+@keyframes rotate4d{
+  from{transform:rotateX(0) rotateY(0)}
+  to{transform:rotateX(360deg) rotateY(360deg)}
+}
 </style>
 </head>
 
@@ -217,6 +290,22 @@ header{
 
 <!-- OVERLAY -->
 <div class="overlay" id="overlay"></div>
+
+<!-- LOADER DESCARGA -->
+<div id="loader-download">
+  <div class="loader-container">
+    <div class="spinner">
+      <div></div><div></div><div></div><div></div><div></div><div></div>
+    </div>
+    <div class="loader-text">CARGANDO PLANTILLA...</div>
+  </div>
+</div>
+
+<!-- LOADER MENÚ -->
+<div id="loader-menu">
+  <div class="circle-4d"></div>
+  <div class="loader-text">Cargando...</div>
+</div>
 
 <header>
   <div class="logo">Plantillas HTML Gratis</div>
@@ -228,8 +317,8 @@ header{
 
 <div class="sidebar" id="sidebar">
   <h2>Creado por Brusmods</h2>
-  <button class="sidebar-btn">Contacto</button>
-  <button class="sidebar-btn">Soporte</button>
+  <button class="sidebar-btn" data-link="#">Contacto</button>
+  <button class="sidebar-btn" data-link="#">Soporte</button>
 </div>
 
 <h1 class="main-title">Plantillas Web Increíbles</h1>
@@ -241,28 +330,47 @@ header{
     </div>
     <div class="info">
       <div>logo-pro.png</div>
-      <button class="download-btn">Descargar</button>
+      <button class="download-btn" data-link="#">Descargar</button>
     </div>
   </div>
 </div>
 
 <script>
-const ham=document.getElementById("hamburger");
-const side=document.getElementById("sidebar");
-const overlay=document.getElementById("overlay");
+const ham = document.getElementById("hamburger");
+const side = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
 
-function toggleMenu(){
+/* MENU OPEN / CLOSE */
+ham.onclick = e =>{
+  e.stopPropagation();
   ham.classList.toggle("active");
   side.classList.toggle("active");
   overlay.classList.toggle("active");
-}
+};
 
-ham.onclick=e=>{
-  e.stopPropagation();
-  toggleMenu();
-}
+overlay.onclick = ()=>{
+  ham.classList.remove("active");
+  side.classList.remove("active");
+  overlay.classList.remove("active");
+};
 
-overlay.onclick=toggleMenu;
+/* LOADER DESCARGA */
+document.querySelectorAll(".download-btn").forEach(btn=>{
+  btn.onclick = e=>{
+    e.preventDefault();
+    document.getElementById("loader-download").style.display="flex";
+    setTimeout(()=>window.location.href=btn.dataset.link,2500);
+  };
+});
+
+/* LOADER MENU */
+document.querySelectorAll(".sidebar-btn").forEach(btn=>{
+  btn.onclick = e=>{
+    e.preventDefault();
+    document.getElementById("loader-menu").style.display="flex";
+    setTimeout(()=>window.location.href=btn.dataset.link,3000);
+  };
+});
 </script>
 
 </body>
