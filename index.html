@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantillas HTML Gratis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        header {
+            background-color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .search-bar {
+            width: 60%;
+            max-width: 500px;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-bar:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+        }
+        .main-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 30px 0 10px;
+            font-weight: 700;
+        }
+        .explore {
+            text-align: center;
+            color: #007bff;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            cursor: pointer;
+        }
+        .all-templates {
+            padding: 0 20px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 0 20px 40px;
+        }
+        .template-card {
+            background-color: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            aspect-ratio: 4 / 3; /* Proporción fija para que todas las tarjetas sean similares */
+        }
+        .template-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .image-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* La imagen se adapta y llena el espacio sin distorsión */
+            transition: transform 0.5s ease;
+        }
+        .template-card:hover .image-container img {
+            transform: scale(1.12); /* Zoom suave en la imagen al hover */
+        }
+        .download-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 123, 255, 0.9);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.4s ease;
+            pointer-events: none;
+        }
+        .template-card:hover .download-btn {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        @media (max-width: 600px) {
+            .template-grid {
+                grid-template-columns: 1fr;
+            }
+            .main-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Plantillas HTML Gratis</div>
+        <input type="text" class="search-bar" placeholder="Buscar plantillas...">
+    </header>
+
+    <h1 class="main-title">Plantillas web increíbles</h1>
+    <div class="explore">Explorar categorías ></div>
+
+    <h2 class="all-templates">Todas las plantillas</h2>
+
+    <div class="template-grid">
+        <!-- Tarjeta 1 -->
+        <div class="template-card" onclick="window.location.href='tu-link-descarga-1.html'">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/600x450?text=Plantilla+1+-+Auto" alt="Plantilla Auto">
+            </div>
+            <button class="download-btn">Probar y Descargar</button>
+        </div>
+
+        <!-- Tarjeta 2 -->
+        <div class="template-card" onclick="window.location.href='tu-link-descarga-2.html'">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/600x450?text=Plantilla+2+-+Blog" alt="Plantilla Blog">
+            </div>
+            <button class="download-btn">Probar y Descargar</button>
+        </div>
+
+        <!-- Tarjeta 3 -->
+        <div class="template-card" onclick="window.location.href='tu-link-descarga-3.html'">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/600x450?text=Plantilla+3+-+IA" alt="Plantilla IA">
+            </div>
+            <button class="download-btn">Probar y Descargar</button>
+        </div>
+
+        <!-- Tarjeta 4 -->
+        <div class="template-card" onclick="window.location.href='tu-link-descarga-4.html'">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/600x450?text=Plantilla+4+-+Datos" alt="Plantilla Datos">
+            </div>
+            <button class="download-btn">Probar y Descargar</button>
+        </div>
+
+        <!-- Para agregar más: solo copia y pega un bloque completo de arriba -->
+        <!-- Ejemplo de quinta tarjeta -->
+        <!-- 
+        <div class="template-card" onclick="window.location.href='tu-link-5.html'">
+            <div class="image-container">
+                <img src="URL_DE_TU_IMAGEN" alt="Nueva plantilla">
+            </div>
+            <button class="download-btn">Probar y Descargar</button>
+        </div>
+        -->
+    </div>
+</body>
+</html>
