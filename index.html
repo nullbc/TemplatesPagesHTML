@@ -114,15 +114,14 @@ header{
   transition:.5s cubic-bezier(.68,-0.55,.27,1.55);
   z-index:1100;
   box-shadow:-20px 0 60px rgba(0,204,255,.35);
-  text-align:center;
+  display:flex;
+  flex-direction:column;
 }
 
 .sidebar.active{ right:0; }
 
-.sidebar h2{
-  color:var(--primary);
-  margin-bottom:2.5rem;
-  text-shadow:var(--glow);
+.sidebar-menu{
+  flex:1;
 }
 
 .sidebar-btn{
@@ -142,6 +141,15 @@ header{
 .sidebar-btn:hover{
   transform:scale(1.08);
   box-shadow:0 0 40px #00ccff;
+}
+
+.sidebar-footer{
+  text-align:center;
+  color:var(--primary);
+  font-weight:700;
+  text-shadow:var(--glow);
+  padding-top:1.5rem;
+  border-top:1px solid rgba(0,204,255,.2);
 }
 
 /* ================= CONTENIDO ================= */
@@ -206,7 +214,7 @@ header{
   box-shadow:var(--shadow);
 }
 
-/* ================= LOADER DESCARGA (CUBO MEJORADO - VERSIÓN FINAL) ================= */
+/* ================= LOADER DESCARGA ================= */
 #loader-download{
   position:fixed;
   inset:0;
@@ -215,7 +223,6 @@ header{
   align-items:center;
   justify-content:center;
   z-index:9999;
-  backdrop-filter:blur(12px);
 }
 
 .loader-container{
@@ -230,7 +237,6 @@ header{
   font-weight:700;
   font-size:2.2rem;
   text-shadow:var(--glow);
-  letter-spacing:1px;
 }
 
 .spinner{
@@ -238,21 +244,15 @@ header{
   height:130px;
   position:relative;
   transform-style:preserve-3d;
-  perspective:1100px;
   animation:spin 5s linear infinite;
 }
 
 .spinner div{
   position:absolute;
   inset:0;
-  background:rgba(0,204,255,0.25);
   border:4px solid var(--primary);
-  box-shadow:var(--glow), inset 0 0 30px rgba(0,204,255,0.5);
-  opacity:0.9;
-  transition:opacity 0.4s;
+  background:rgba(0,204,255,.25);
 }
-
-.spinner div:hover{ opacity:1; } /* solo para debug, puedes quitarlo */
 
 .spinner div:nth-child(1){transform:rotateY(0deg) translateZ(65px)}
 .spinner div:nth-child(2){transform:rotateY(90deg) translateZ(65px)}
@@ -262,11 +262,10 @@ header{
 .spinner div:nth-child(6){transform:rotateX(-90deg) translateZ(65px)}
 
 @keyframes spin{
-  from{transform:rotateX(0deg) rotateY(0deg)}
   to{transform:rotateX(360deg) rotateY(360deg)}
 }
 
-/* ================= LOADER MENÚ (CÍRCULO 4D - VERSIÓN LIMPIA Y MEJORADA) ================= */
+/* ================= LOADER MENU ================= */
 #loader-menu{
   position:fixed;
   inset:0;
@@ -275,52 +274,30 @@ header{
   align-items:center;
   justify-content:center;
   flex-direction:column;
-  gap:2.5rem;
+  gap:2rem;
   z-index:9999;
 }
 
 .circle-4d{
-  width:160px;
-  height:160px;
+  width:150px;
+  height:150px;
   border-radius:50%;
   border:6px solid var(--primary);
-  box-shadow:var(--glow), inset 0 0 40px rgba(0,204,255,0.4);
-  animation:rotate4d 4s linear infinite, pulse 2.5s ease-in-out infinite alternate;
-  transform-style:preserve-3d;
-  perspective:1000px;
-}
-
-@keyframes rotate4d{
-  from{transform:rotateX(0deg) rotateY(0deg)}
-  to{transform:rotateX(360deg) rotateY(360deg)}
-}
-
-@keyframes pulse{
-  from{transform:scale(1); box-shadow:var(--glow), inset 0 0 40px rgba(0,204,255,0.4);}
-  to{transform:scale(1.08); box-shadow:0 0 60px #00ccff, inset 0 0 60px rgba(0,204,255,0.6);}
+  animation:spin 4s linear infinite;
 }
 
 .loader-text-menu{
   color:var(--primary);
   font-weight:700;
   font-size:2rem;
-  text-shadow:var(--glow);
-  animation:pulseText 3s ease-in-out infinite;
-}
-
-@keyframes pulseText{
-  0%,100%{opacity:0.85; transform:scale(1);}
-  50%{opacity:1; transform:scale(1.03);}
 }
 </style>
 </head>
 
 <body>
 
-<!-- OVERLAY -->
 <div class="overlay" id="overlay"></div>
 
-<!-- LOADER DESCARGA -->
 <div id="loader-download">
   <div class="loader-container">
     <div class="spinner">
@@ -330,7 +307,6 @@ header{
   </div>
 </div>
 
-<!-- LOADER MENÚ -->
 <div id="loader-menu">
   <div class="circle-4d"></div>
   <div class="loader-text-menu">Cargando...</div>
@@ -338,43 +314,38 @@ header{
 
 <header>
   <div class="logo">Plantillas HTML Gratis</div>
-  <input class="search-bar" placeholder="Buscar plantillas...">
+  <input type="text" class="search-bar" placeholder="Buscar plantillas...">
   <div class="hamburger" id="hamburger">
     <span></span><span></span><span></span>
   </div>
 </header>
 
 <div class="sidebar" id="sidebar">
-  <h2>Creado por Brusmods</h2>
-  <button class="sidebar-btn" data-link="#">Contacto</button>
-  <button class="sidebar-btn" data-link="#">Soporte</button>
+  <div class="sidebar-menu">
+    <button class="sidebar-btn" data-link="#">Contacto</button>
+    <button class="sidebar-btn" data-link="#">Soporte</button>
+  </div>
+  <div class="sidebar-footer">Creado por Brusmods</div>
 </div>
 
 <h1 class="main-title">Plantillas Web Increíbles</h1>
 
 <div class="template-grid">
   <div class="template-card">
-    <div class="image-container">
-      <img src="1.png">
-    </div>
+    <div class="image-container"><img src="1.png"></div>
     <div class="info">
       <div>Algo Moderno</div>
       <button class="download-btn" data-link="#">Descargar</button>
     </div>
   </div>
 
-  
-<div class="template-grid">
   <div class="template-card">
-    <div class="image-container">
-      <img src="2.png">
-    </div>
+    <div class="image-container"><img src="2.png"></div>
     <div class="info">
-      <div>Algo Clasico</div>
+      <div>Algo Clásico</div>
       <button class="download-btn" data-link="#">Descargar</button>
     </div>
   </div>
-  <!-- Aquí puedes agregar más cards -->
 </div>
 
 <script>
@@ -382,7 +353,7 @@ const ham = document.getElementById("hamburger");
 const side = document.getElementById("sidebar");
 const overlay = document.getElementById("overlay");
 
-/* MENU OPEN / CLOSE */
+/* MENU */
 ham.onclick = e =>{
   e.stopPropagation();
   ham.classList.toggle("active");
@@ -401,7 +372,7 @@ document.querySelectorAll(".download-btn").forEach(btn=>{
   btn.onclick = e=>{
     e.preventDefault();
     document.getElementById("loader-download").style.display="flex";
-    setTimeout(()=>window.location.href=btn.dataset.link || "#", 2500);
+    setTimeout(()=>window.location.href=btn.dataset.link || "#",2500);
   };
 });
 
@@ -409,8 +380,11 @@ document.querySelectorAll(".download-btn").forEach(btn=>{
 document.querySelectorAll(".sidebar-btn").forEach(btn=>{
   btn.onclick = e=>{
     e.preventDefault();
+    ham.classList.remove("active");
+    side.classList.remove("active");
+    overlay.classList.remove("active");
     document.getElementById("loader-menu").style.display="flex";
-    setTimeout(()=>window.location.href=btn.dataset.link || "#", 3000);
+    setTimeout(()=>window.location.href=btn.dataset.link || "#",3000);
   };
 });
 </script>
